@@ -1,0 +1,208 @@
+.cart-page {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: var(--spacing-2xl) var(--spacing-md);
+    min-height: 60vh;
+}
+
+.empty-cart-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 50vh;
+    gap: var(--spacing-lg);
+    text-align: center;
+}
+
+.empty-cart-container h2 {
+    color: var(--color-primary-dark);
+}
+
+.cart-content {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-2xl);
+    margin-top: var(--spacing-xl);
+}
+
+@media (min-width: 1024px) {
+    .cart-content {
+        grid-template-columns: 2fr 1fr;
+    }
+}
+
+/* Cart Items */
+.cart-items {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+.cart-item {
+    display: flex;
+    align-items: center;
+    background-color: var(--color-surface);
+    padding: var(--spacing-md);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+    gap: var(--spacing-md);
+    flex-wrap: wrap;
+}
+
+.cart-item-image {
+    width: 80px;
+    height: 80px;
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.cart-item-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.cart-item-details {
+    flex-grow: 1;
+    min-width: 150px;
+}
+
+.cart-item-details h3 {
+    font-size: 1.1rem;
+    margin-bottom: var(--spacing-xs);
+    color: var(--color-text-main);
+}
+
+.item-unit {
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+}
+
+.cart-item-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-lg);
+    margin-left: auto;
+}
+
+/* Quantity Controls */
+.quantity-controls {
+    display: flex;
+    align-items: center;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+}
+
+.qty-btn {
+    background: none;
+    border: none;
+    padding: 0.25rem 0.5rem;
+    color: var(--color-text-main);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.qty-btn:disabled {
+    color: var(--color-border);
+    cursor: not-allowed;
+}
+
+.qty-btn:hover:not(:disabled) {
+    background-color: #f3f4f6;
+}
+
+.qty-value {
+    padding: 0 0.5rem;
+    font-weight: 600;
+    min-width: 2rem;
+    text-align: center;
+}
+
+.item-total {
+    font-weight: 700;
+    color: var(--color-primary);
+    min-width: 80px;
+    text-align: right;
+}
+
+.remove-btn {
+    background: none;
+    border: none;
+    color: var(--color-text-muted);
+    cursor: pointer;
+    padding: 0.5rem;
+    transition: color var(--transition-fast);
+}
+
+.remove-btn:hover {
+    color: var(--color-error);
+}
+
+/* Cart Summary */
+.cart-summary {
+    background-color: var(--color-surface);
+    padding: var(--spacing-xl);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    height: fit-content;
+    position: sticky;
+    top: 100px;
+}
+
+.cart-summary h2 {
+    font-size: 1.5rem;
+    margin-bottom: var(--spacing-lg);
+    border-bottom: 2px solid var(--color-background);
+    padding-bottom: var(--spacing-md);
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: var(--spacing-md);
+    color: var(--color-text-muted);
+}
+
+.summary-divider {
+    height: 1px;
+    background-color: var(--color-border);
+    margin: var(--spacing-md) 0;
+}
+
+.summary-row.total {
+    color: var(--color-primary-dark);
+    font-weight: 700;
+    font-size: 1.25rem;
+    margin-top: var(--spacing-sm);
+}
+
+.checkout-btn {
+    margin-top: var(--spacing-lg);
+}
+
+.clear-cart-btn {
+    background: none;
+    border: none;
+    width: 100%;
+    margin-top: var(--spacing-md);
+    color: var(--color-text-muted);
+    text-decoration: underline;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.clear-cart-btn:hover {
+    color: var(--color-error);
+}
+
+@media (max-width: 640px) {
+    .cart-item-actions {
+        width: 100%;
+        margin-left: 0;
+        justify-content: space-between;
+        margin-top: var(--spacing-md);
+    }
+}

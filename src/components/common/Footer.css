@@ -1,0 +1,108 @@
+.footer {
+    background-color: var(--color-primary-dark);
+    color: var(--color-text-light);
+    /* Off-white text on dark background */
+    padding: var(--spacing-3xl) 0 var(--spacing-lg);
+    margin-top: auto;
+    /* Push to bottom if content is short */
+}
+
+.footer-container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-md);
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-2xl);
+}
+
+@media (min-width: 768px) {
+    .footer-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .footer-container {
+        grid-template-columns: 2fr 1fr 1fr 1fr;
+    }
+}
+
+.footer-col h3 {
+    color: var(--color-secondary);
+    /* Gold headers */
+    font-size: 1.25rem;
+    margin-bottom: var(--spacing-lg);
+}
+
+/* Brand Column */
+.footer-logo {
+    font-family: var(--font-heading);
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--color-surface);
+    display: inline-block;
+    margin-bottom: var(--spacing-md);
+}
+
+.footer-desc {
+    color: #9CA3AF;
+    /* Muted text for dark bg */
+    margin-bottom: var(--spacing-lg);
+    line-height: 1.6;
+}
+
+.social-links {
+    display: flex;
+    gap: var(--spacing-md);
+}
+
+.social-links a {
+    color: var(--color-text-light);
+    transition: color var(--transition-fast);
+}
+
+.social-links a:hover {
+    color: var(--color-secondary);
+}
+
+/* Links */
+.footer-links li {
+    margin-bottom: var(--spacing-sm);
+}
+
+.footer-links a {
+    color: #D1D5DB;
+    transition: color var(--transition-fast);
+}
+
+.footer-links a:hover {
+    color: var(--color-secondary);
+    padding-left: 4px;
+}
+
+/* Contact Info */
+.contact-info li {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-md);
+    color: #D1D5DB;
+}
+
+.contact-info svg {
+    color: var(--color-secondary);
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+/* Footer Bottom */
+.footer-bottom {
+    max-width: 1280px;
+    margin: var(--spacing-2xl) auto 0;
+    padding: var(--spacing-md) var(--spacing-md) 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: center;
+    color: #6B7280;
+    font-size: 0.875rem;
+}

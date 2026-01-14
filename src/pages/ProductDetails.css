@@ -1,0 +1,133 @@
+.product-details-page {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: var(--spacing-xl) var(--spacing-md);
+}
+
+.back-btn {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    background: none;
+    border: none;
+    color: var(--color-text-muted);
+    cursor: pointer;
+    margin-bottom: var(--spacing-lg);
+    font-weight: 500;
+}
+
+.back-btn:hover {
+    color: var(--color-primary);
+}
+
+.product-details-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-2xl);
+}
+
+@media (min-width: 768px) {
+    .product-details-container {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.product-gallery {
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    height: 400px;
+    /* or aspect-ratio */
+}
+
+.product-gallery img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.product-info-panel {
+    display: flex;
+    flex-direction: column;
+}
+
+.product-category-badge {
+    color: var(--color-secondary);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+    margin-bottom: var(--spacing-sm);
+}
+
+.product-title {
+    color: var(--color-primary-dark);
+    margin-bottom: var(--spacing-sm);
+}
+
+.product-price-large {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    margin-bottom: var(--spacing-lg);
+}
+
+.unit-label {
+    font-size: 1rem;
+    color: var(--color-text-muted);
+    font-weight: 400;
+}
+
+.product-description-container {
+    margin-bottom: var(--spacing-2xl);
+}
+
+.main-desc {
+    font-size: 1.1rem;
+    color: var(--color-text-main);
+    margin-bottom: var(--spacing-md);
+}
+
+.sub-desc {
+    font-size: 0.95rem;
+}
+
+.purchase-actions {
+    display: flex;
+    gap: var(--spacing-md);
+    margin-top: auto;
+}
+
+.qty-selector {
+    display: flex;
+    align-items: center;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: 0.25rem;
+}
+
+.qty-selector button {
+    background: none;
+    border: none;
+    padding: 0.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.qty-selector span {
+    padding: 0 1rem;
+    font-weight: 600;
+    min-width: 2.5rem;
+    text-align: center;
+}
+
+.out-of-stock-msg {
+    padding: var(--spacing-md);
+    background-color: #f3f4f6;
+    color: var(--color-text-muted);
+    text-align: center;
+    border-radius: var(--radius-md);
+    font-weight: 600;
+}

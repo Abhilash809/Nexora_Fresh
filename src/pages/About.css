@@ -1,0 +1,80 @@
+.about-page {
+    /* Styles shared with other pages */
+}
+
+.page-header {
+    height: 40vh;
+    min-height: 300px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: var(--color-surface);
+}
+
+.about-header {
+    background-image: linear-gradient(rgba(15, 46, 35, 0.7), rgba(15, 46, 35, 0.7)), url('https://images.unsplash.com/photo-1589923188900-85dae523342b?q=80&w=2670&auto=format&fit=crop');
+}
+
+.header-content {
+    max-width: 800px;
+    padding: var(--spacing-md);
+}
+
+.section-container {
+    padding: var(--spacing-3xl) var(--spacing-md);
+    max-width: 1280px;
+    margin: 0 auto;
+}
+
+.bg-offset {
+    background-color: #f9fafb;
+    /* Breaking out of container for full width bg */
+    width: 100vw;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    padding-left: max(1rem, calc((100vw - 1280px) / 2));
+    padding-right: max(1rem, calc((100vw - 1280px) / 2));
+}
+
+.two-col-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-2xl);
+    align-items: center;
+}
+
+@media (min-width: 768px) {
+    .two-col-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .reverse .text-col {
+        order: 2;
+    }
+
+    .reverse .image-col {
+        order: 1;
+    }
+}
+
+.text-col h2 {
+    color: var(--color-primary-dark);
+    font-size: 2rem;
+    margin-bottom: var(--spacing-lg);
+}
+
+.text-col p {
+    font-size: 1.05rem;
+    color: var(--color-text-main);
+    margin-bottom: var(--spacing-md);
+    line-height: 1.8;
+}
+
+.image-col img {
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-xl);
+}
