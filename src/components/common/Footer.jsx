@@ -62,8 +62,8 @@ const Footer = () => {
                     <h3>Export & Legal</h3>
                     <ul className="footer-links">
                         <li><Link to="/contact">Export Inquiries</Link></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Terms of Service</a></li>
+                        <li><Link to="/privacy">Privacy Policy</Link></li>
+                        <li><Link to="/terms">Terms of Service</Link></li>
                     </ul>
                 </div>
 

@@ -30,7 +30,7 @@ const About = () => {
                         </p>
                     </div>
                     <div className="image-col animate-slide-left">
-                        <img src="https://images.unsplash.com/photo-1621287103173-1d0bc8351e62?q=80&w=2670&auto=format&fit=crop" alt="Greenhouse Interior" />
+                        <img src="/images/about-interior.png" alt="Greenhouse Interior" />
                     </div>
                 </div>
             </section>
@@ -49,7 +49,7 @@ const About = () => {
                         </p>
                     </div>
                     <div className="image-col animate-slide-right">
-                        <img src="https://images.unsplash.com/photo-1595113316349-9fa4eb24f884?q=80&w=2672&auto=format&fit=crop" alt="Fresh Produce Export" />
+                        <img src="/images/about-export.png" alt="Fresh Produce Export" />
                     </div>
                 </div>
             </section>
