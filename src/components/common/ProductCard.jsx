@@ -3,7 +3,6 @@ import { Plus, Check } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useCurrency } from '../../context/CurrencyContext';
 import { useCart } from '../../context/CartContext';
-import Button from './Button';
 import './ProductCard.css';
 
 const ProductCard = ({ product }) => {
@@ -12,7 +11,8 @@ const ProductCard = ({ product }) => {
     const [isAdded, setIsAdded] = React.useState(false);
 
     const handleAddToCart = (e) => {
-        e.preventDefault(); // Prevent navigation if clicking the button
+        e.preventDefault();
+        if (!product.available) return;
         addToCart(product);
         setIsAdded(true);
         setTimeout(() => setIsAdded(false), 2000);
@@ -22,19 +22,28 @@ const ProductCard = ({ product }) => {
         <Link to={`/products/${product.id}`} className="product-card-link">
             <div className="product-card">
                 <div className="product-image-container">
-                    <img
-                        src={product.image}
-                        alt={product.name}
-                        className="product-image"
-                        loading="lazy"
-                    />
-                    {product.isNew && <span className="badge badge-new">New Harvest</span>}
-                    {!product.available && <span className="badge badge-out">Out of Stock</span>}
+                    {product.isComingSoon ? (
+                        <div className="coming-soon-placeholder">
+                            <span>Coming Soon</span>
+                        </div>
+                    ) : (
+                        <img
+                            src={product.image}
+                            alt={product.name}
+                            className="product-image"
+                            loading="lazy"
+                        />
+                    )}
+                    {product.isNew && !product.isComingSoon && <span className="badge badge-new">New Harvest</span>}
+                    {!product.available && !product.isComingSoon && <span className="badge badge-out">Out of Stock</span>}
                 </div>
 
                 <div className="product-info">
                     <div className="product-header">
-                        <h3 className="product-name">{product.name}</h3>
+                        <h3 className="product-name">
+                            {product.isComingSoon && <em className="coming-soon-prefix">Coming Soon — </em>}
+                            {product.name}
+                        </h3>
                         <span className="product-unit">per {product.unit}</span>
                     </div>
 
@@ -45,17 +54,15 @@ const ProductCard = ({ product }) => {
                             {formatPrice(product.priceLKR)}
                         </div>
 
-                        <Button
-                            variant={isAdded ? "success" : "primary"}
-                            size="sm"
-                            className={`btn-add-cart ${isAdded ? 'added' : ''}`}
+                        <button
+                            className={`btn-add-cart ${!product.available ? 'disabled' : ''} ${isAdded ? 'added' : ''}`}
                             onClick={handleAddToCart}
                             disabled={!product.available}
                             aria-label={`Add ${product.name} to cart`}
                         >
-                            {isAdded ? <Check size={18} /> : <Plus size={18} />}
-                            <span style={{ marginLeft: '4px' }}>{isAdded ? 'Added' : 'Add'}</span>
-                        </Button>
+                            {isAdded ? <Check size={16} /> : <Plus size={16} />}
+                            <span>{isAdded ? 'Added' : 'Add'}</span>
+                        </button>
                     </div>
                 </div>
             </div>

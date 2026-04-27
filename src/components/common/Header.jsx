@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, NavLink, useLocation } from 'react-router-dom';
 import { ShoppingBag, Menu, X, User } from 'lucide-react';
 import { useCart } from '../../context/CartContext';
 import { useCurrency } from '../../context/CurrencyContext';
@@ -8,13 +8,26 @@ import './Header.css';
 
 const Header = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [scrolled, setScrolled] = useState(false);
     const { toggleCart, getCartCount } = useCart();
     const { currency, toggleCurrency } = useCurrency();
 
+    const location = useLocation();
     const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+    const isHome = location.pathname === '/';
+    const isProducts = location.pathname.startsWith('/products');
+    const headerClass = `header ${scrolled ? 'scrolled' : ''} ${!isHome ? (isProducts ? 'products' : 'solid') : ''}`;
+
+    useEffect(() => {
+        const handleScroll = () => {
+            setScrolled(window.scrollY > 60);
+        };
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
 
     return (
-        <header className="header">
+        <header className={headerClass}>
             <div className="header-container">
                 {/* Logo */}
                 <Link to="/" className="logo">
@@ -23,7 +36,7 @@ const Header = () => {
 
                 {/* Desktop Navigation */}
                 <nav className="desktop-nav">
-                    <NavLink to="/" className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}>Home</NavLink>
+                    <NavLink to="/" className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`} end>Home</NavLink>
                     <NavLink to="/products" className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}>Products</NavLink>
                     <NavLink to="/about" className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}>About Us</NavLink>
                     <NavLink to="/sustainability" className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}>Sustainability</NavLink>
@@ -37,11 +50,11 @@ const Header = () => {
                     </button>
 
                     <Link to="/login" className="icon-btn user-btn" aria-label="Login">
-                        <User size={24} color="var(--color-primary-dark)" />
+                        <User size={22} />
                     </Link>
 
                     <button onClick={toggleCart} className="icon-btn cart-btn" aria-label="Open Cart">
-                        <ShoppingBag size={24} color="var(--color-primary-dark)" />
+                        <ShoppingBag size={22} />
                         {getCartCount() > 0 && <span className="cart-badge">{getCartCount()}</span>}
                     </button>
 

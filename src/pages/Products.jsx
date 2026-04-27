@@ -17,25 +17,27 @@ const PRODUCTS_DATA = [
     },
     {
         id: 2,
-        name: "Coming Soon - Organic Tomato",
+        name: "Organic Tomato",
         category: "Organic",
         priceLKR: 850,
         unit: "kg",
         image: "https://images.unsplash.com/photo-1592924357228-91a4daadcfea?q=80&w=2574&auto=format&fit=crop",
         description: "Export-quality organic tomatoes. Rich in flavor and grown without synthetic pesticides.",
         available: false,
-        isNew: false
+        isNew: false,
+        isComingSoon: true
     },
     {
         id: 3,
-        name: "Coming Soon - Bell Peppers",
+        name: "Bell Peppers",
         category: "Organic",
         priceLKR: 1200,
         unit: "kg",
         image: "https://images.unsplash.com/photo-1563565375-f3fdf5efa269?q=80&w=2670&auto=format&fit=crop",
         description: "Vibrant and crunchy bell peppers, perfect for stir-fries and fresh eating.",
         available: false,
-        isNew: false
+        isNew: false,
+        isComingSoon: true
     }
 ];
 
@@ -64,22 +66,26 @@ const Products = () => {
                 <p className="page-subtitle">Freshly picked from our greenhouses to your table.</p>
             </div>
 
-            <div className="category-filter">
-                {CATEGORIES.map(cat => (
-                    <button
-                        key={cat}
-                        className={`filter-btn ${selectedCategory === cat ? 'active' : ''}`}
-                        onClick={() => setSelectedCategory(cat)}
-                    >
-                        {cat}
-                    </button>
-                ))}
-            </div>
+            <div className="products-container">
+                <div className="category-filter-container">
+                    <div className="category-filter">
+                        {CATEGORIES.map(cat => (
+                            <button
+                                key={cat}
+                                className={`filter-tab ${selectedCategory === cat ? 'active' : ''}`}
+                                onClick={() => setSelectedCategory(cat)}
+                            >
+                                {cat}
+                            </button>
+                        ))}
+                    </div>
+                </div>
 
-            <div className="products-grid">
-                {filteredProducts.map(product => (
-                    <ProductCard key={product.id} product={product} />
-                ))}
+                <div className="products-grid">
+                    {filteredProducts.map(product => (
+                        <ProductCard key={product.id} product={product} />
+                    ))}
+                </div>
             </div>
         </div>
     );

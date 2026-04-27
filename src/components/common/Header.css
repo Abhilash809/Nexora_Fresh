@@ -1,16 +1,80 @@
+/* ── Transparent Navbar ── */
 .header {
-    position: sticky;
+    position: fixed;
     top: 0;
+    left: 0;
+    width: 100%;
     z-index: 1000;
-    background-color: var(--color-surface);
-    box-shadow: var(--shadow-sm);
-    padding: 1rem 0;
+    padding: 1.25rem 0;
+    transition: background-color 0.4s ease, box-shadow 0.4s ease, padding 0.4s ease;
+    background-color: transparent;
+    box-shadow: none;
+}
+
+.header.scrolled {
+    background-color: var(--color-deep-green);
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+    padding: 0.75rem 0;
+}
+/* Products & Solid Page Header (Light Background) */
+.header.products,
+.header.solid {
+    background-color: var(--color-cream);
+    box-shadow: none;
+    padding: 1.25rem 0;
+}
+
+/* Maintain cream background when scrolled on light pages, but add a subtle shadow for legibility if needed */
+/* Or as requested: "no border, no shadow, no visible separation" */
+.header.scrolled.products,
+.header.scrolled.solid {
+    background-color: var(--color-cream);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05); /* very subtle shadow instead of the heavy one */
+    padding: 0.75rem 0;
+}
+
+.header.products .logo,
+.header.solid .logo {
+    color: var(--color-deep-green);
+}
+
+.header.products .nav-link,
+.header.solid .nav-link {
+    color: rgba(15, 46, 26, 0.7);
+}
+
+.header.products .nav-link:hover,
+.header.products .nav-link.active,
+.header.solid .nav-link:hover,
+.header.solid .nav-link.active {
+    color: var(--color-deep-green);
+}
+
+.header.products .icon-btn,
+.header.solid .icon-btn {
+    color: var(--color-deep-green);
+}
+
+.header.products .currency-toggle,
+.header.solid .currency-toggle {
+    color: var(--color-deep-green);
+    border-color: rgba(15, 46, 26, 0.2);
+}
+
+.header.products .currency-toggle:hover,
+.header.solid .currency-toggle:hover {
+    border-color: var(--color-deep-green);
+}
+
+.header.products .mobile-menu-btn,
+.header.solid .mobile-menu-btn {
+    color: var(--color-deep-green);
 }
 
 .header-container {
     max-width: 1280px;
     margin: 0 auto;
-    padding: 0 var(--spacing-md);
+    padding: 0 var(--spacing-xl);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -18,15 +82,15 @@
 
 /* Logo */
 .logo {
-    font-family: var(--font-heading);
+    font-family: var(--font-display);
     font-size: 1.5rem;
-    font-weight: 700;
-    color: var(--color-primary-dark);
-    letter-spacing: -0.02em;
+    font-weight: 400;
+    color: #ffffff;
+    letter-spacing: 0.04em;
 }
 
 .logo-fresh {
-    color: var(--color-primary-light);
+    color: var(--color-gold);
 }
 
 /* Desktop Navigation */
@@ -37,30 +101,36 @@
 @media (min-width: 768px) {
     .desktop-nav {
         display: flex;
-        gap: var(--spacing-lg);
+        gap: var(--spacing-xl);
     }
 }
 
 .nav-link {
+    font-family: var(--font-body);
     font-weight: 500;
-    color: var(--color-text-muted);
-    font-size: 0.95rem;
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.7);
+    letter-spacing: 0.02em;
     position: relative;
+    transition: color var(--transition-fast);
 }
 
-.nav-link:hover,
+.nav-link:hover {
+    color: #ffffff;
+}
+
 .nav-link.active {
-    color: var(--color-primary);
+    color: #ffffff;
 }
 
 .nav-link.active::after {
     content: '';
     position: absolute;
-    bottom: -4px;
+    bottom: -6px;
     left: 0;
     width: 100%;
     height: 2px;
-    background-color: var(--color-secondary);
+    background-color: var(--color-gold);
     border-radius: var(--radius-full);
 }
 
@@ -79,21 +149,37 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: transform var(--transition-fast);
+    transition: transform var(--transition-fast), opacity var(--transition-fast);
+    color: rgba(255, 255, 255, 0.8);
 }
 
 .icon-btn:hover {
     transform: scale(1.1);
+    color: #ffffff;
+}
+
+.icon-btn svg {
+    color: inherit !important;
 }
 
 .currency-toggle {
-    font-family: var(--font-heading);
-    font-weight: 600;
-    color: var(--color-primary-dark);
-    border: 1px solid var(--color-border);
+    font-family: var(--font-body);
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.25);
     border-radius: var(--radius-sm);
     padding: 0.25rem 0.5rem;
-    font-size: 0.875rem;
+    font-size: 0.8rem;
+    letter-spacing: 0.03em;
+}
+
+.currency-toggle:hover {
+    border-color: rgba(255, 255, 255, 0.5);
+    color: #ffffff;
+}
+
+.currency-text {
+    color: inherit;
 }
 
 .cart-btn {
@@ -104,9 +190,9 @@
     position: absolute;
     top: -5px;
     right: -5px;
-    background-color: var(--color-secondary);
-    color: var(--color-primary-dark);
-    font-size: 0.7rem;
+    background-color: var(--color-gold);
+    color: var(--color-deep-green);
+    font-size: 0.65rem;
     font-weight: 700;
     min-width: 18px;
     height: 18px;
@@ -118,7 +204,7 @@
 
 .mobile-menu-btn {
     display: block;
-    color: var(--color-text-main);
+    color: rgba(255, 255, 255, 0.9);
 }
 
 @media (min-width: 768px) {
@@ -133,16 +219,13 @@
     top: 100%;
     left: 0;
     width: 100%;
-    background-color: var(--color-surface);
-    border-top: 1px solid var(--color-border);
-    padding: var(--spacing-md);
-    box-shadow: var(--shadow-md);
-
+    background-color: var(--color-deep-green);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding: var(--spacing-md) var(--spacing-xl);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
     display: none;
     flex-direction: column;
-    gap: var(--spacing-md);
-
-    transform-origin: top;
+    gap: 0;
     animation: slideDown 0.3s ease-out;
 }
 
@@ -151,13 +234,25 @@
 }
 
 .mobile-nav-link {
-    font-size: 1.1rem;
+    font-family: var(--font-body);
+    font-size: 1rem;
     font-weight: 500;
-    color: var(--color-text-main);
-    padding: var(--spacing-sm) 0;
-    border-bottom: 1px solid var(--color-border);
+    color: rgba(255, 255, 255, 0.7);
+    padding: var(--spacing-md) 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    transition: color var(--transition-fast), padding-left var(--transition-fast);
+}
+
+.mobile-nav-link:hover {
+    color: #ffffff;
+    padding-left: 8px;
 }
 
 .mobile-nav-link:last-child {
     border-bottom: none;
+}
+
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-8px); }
+    to { opacity: 1; transform: translateY(0); }
 }
