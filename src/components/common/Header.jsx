@@ -16,8 +16,10 @@ const Header = () => {
     const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
     const isHome = location.pathname === '/';
     const isAbout = location.pathname === '/about';
+    const isSustainability = location.pathname === '/sustainability';
+    const isContact = location.pathname === '/contact';
     const isProducts = location.pathname.startsWith('/products');
-    const isTransparent = isHome || isAbout;
+    const isTransparent = isHome || isAbout || isSustainability || isContact;
     const headerClass = `header ${scrolled ? 'scrolled' : ''} ${!isTransparent ? (isProducts ? 'products' : 'solid') : ''}`;
 
     useEffect(() => {
