@@ -1,80 +1,352 @@
-.about-page {
-    /* Styles shared with other pages */
+.about-page-redesign {
+    background-color: var(--color-cream);
+    overflow-x: hidden;
 }
 
-.page-header {
-    height: 40vh;
-    min-height: 300px;
-    background-size: cover;
-    background-position: center;
+/* ── Section 1: Hero Banner ── */
+.new-about-hero {
+    height: 280px;
+    background-color: var(--color-deep-green);
     position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    color: var(--color-surface);
+    overflow: hidden;
 }
 
-.about-header {
-    background-image: linear-gradient(rgba(15, 46, 35, 0.7), rgba(15, 46, 35, 0.7)), url('/images/about-header.png');
+.hero-grid-texture {
+    position: absolute;
+    inset: 0;
+    background-image: 
+        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+    z-index: 1;
+    pointer-events: none;
 }
 
-.header-content {
-    max-width: 800px;
-    padding: var(--spacing-md);
+.hero-content-center {
+    position: relative;
+    z-index: 2;
+    padding: 0 2rem;
 }
 
-.section-container {
-    padding: var(--spacing-3xl) var(--spacing-md);
-    max-width: 1280px;
+.hero-eyebrow {
+    display: block;
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--color-gold);
+    margin-bottom: 0.75rem;
+}
+
+.hero-headline {
+    font-family: var(--font-display);
+    font-size: 3.5rem;
+    color: #ffffff;
+    margin-bottom: 0.5rem;
+    font-weight: 400;
+}
+
+.hero-subtext {
+    font-family: var(--font-body);
+    font-weight: 300;
+    font-size: 15px;
+    color: rgba(255, 255, 255, 0.6);
+    max-width: 500px;
     margin: 0 auto;
 }
 
-.bg-offset {
-    background-color: #f9fafb;
-    /* Breaking out of container for full width bg */
-    width: 100vw;
-    margin-left: 50%;
-    transform: translateX(-50%);
-    padding-left: max(1rem, calc((100vw - 1280px) / 2));
-    padding-right: max(1rem, calc((100vw - 1280px) / 2));
+/* Decorative Stars */
+.star {
+    position: absolute;
+    pointer-events: none;
 }
 
-.two-col-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: var(--spacing-2xl);
+.gold-star {
+    color: var(--color-gold);
+    opacity: 0.6;
+}
+
+.star-tl { top: -20px; left: -40px; width: 40px; height: 40px; }
+.star-br { bottom: -10px; right: -30px; width: 30px; height: 30px; }
+.star-l { left: -60px; top: 20px; width: 24px; height: 24px; }
+.star-r { right: -60px; bottom: 20px; width: 24px; height: 24px; }
+
+/* ── Section 2: Photo Strip ── */
+.photo-strip {
+    display: flex;
+    width: 100%;
+    height: 300px;
     align-items: center;
+    background-color: var(--color-deep-green);
+    gap: 0;
 }
 
-@media (min-width: 768px) {
-    .two-col-grid {
-        grid-template-columns: 1fr 1fr;
-    }
-
-    .reverse .text-col {
-        order: 2;
-    }
-
-    .reverse .image-col {
-        order: 1;
-    }
+.strip-image {
+    flex: 1;
+    height: 100%;
+    overflow: hidden;
 }
 
-.text-col h2 {
-    color: var(--color-primary-dark);
-    font-size: 2rem;
-    margin-bottom: var(--spacing-lg);
+.strip-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
 }
 
-.text-col p {
-    font-size: 1.05rem;
-    color: var(--color-text-main);
-    margin-bottom: var(--spacing-md);
+.strip-image.taller { height: 100%; }
+.strip-image.shorter { height: 80%; }
+
+.strip-image:hover img {
+    transform: scale(1.05);
+}
+
+/* ── Section 3: Mission Statement ── */
+.mission-section {
+    background-color: #ffffff;
+    padding: 5rem 4rem;
+}
+
+.mission-container {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.mission-header {
+    margin-bottom: 3rem;
+}
+
+.gold-accent-rule {
+    width: 60px;
+    height: 2px;
+    background-color: var(--color-gold);
+    margin-bottom: 1.5rem;
+}
+
+.mission-title {
+    font-family: var(--font-display);
+    font-size: 2.5rem;
+    color: var(--color-deep-green);
+    font-weight: 400;
+    max-width: 600px;
+}
+
+.mission-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+}
+
+.mission-col p {
+    font-family: var(--font-body);
+    font-weight: 300;
+    font-size: 15px;
+    color: #555555;
     line-height: 1.8;
 }
 
-.image-col img {
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-xl);
+/* ── Section 4: Founder/Vision Block ── */
+.vision-founder-section {
+    background-color: var(--color-cream);
+    padding: 5rem 4rem;
+}
+
+.vision-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.vision-grid-new {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+}
+
+.founder-image-card {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4/5;
+    background-color: #eee;
+}
+
+.founder-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 2px;
+}
+
+.founder-quote-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: linear-gradient(transparent, rgba(15, 46, 26, 0.95));
+    padding: 2rem 1.5rem 1.5rem;
+}
+
+.quote-text {
+    color: #ffffff;
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+}
+
+.founder-label {
+    color: var(--color-gold);
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.section-eyebrow-accent {
+    display: block;
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--color-accent-green);
+    margin-bottom: 1rem;
+}
+
+.section-heading-display {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    color: var(--color-deep-green);
+    font-weight: 400;
+    margin-bottom: 2rem;
+}
+
+.vision-body-text p {
+    font-family: var(--font-body);
+    font-weight: 300;
+    font-size: 15px;
+    color: #555555;
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+}
+
+.vision-blockquote {
+    border-left: 3px solid var(--color-gold);
+    padding-left: 1.5rem;
+    margin: 2rem 0;
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    color: var(--color-deep-green);
+    font-style: italic;
+    line-height: 1.5;
+}
+
+/* ── Section 5: Why Choose Nexora ── */
+.why-choose-section {
+    background-color: var(--color-deep-green);
+    padding: 6rem 4rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.why-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+}
+
+.why-header {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 4rem;
+    position: relative;
+}
+
+.why-title {
+    font-family: var(--font-display);
+    font-size: 2.2rem;
+    color: #ffffff;
+    font-weight: 400;
+    margin-bottom: 1rem;
+}
+
+.why-subtitle {
+    font-family: var(--font-body);
+    font-weight: 300;
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.why-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3rem;
+}
+
+.why-col {
+    text-align: center;
+}
+
+.icon-circle {
+    width: 64px;
+    height: 64px;
+    background-color: var(--color-gold);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+    transition: transform 0.3s ease;
+}
+
+.why-col:hover .icon-circle {
+    transform: scale(1.1);
+}
+
+.why-col-title {
+    font-family: var(--font-body);
+    font-weight: 500;
+    font-size: 1.1rem;
+    color: #ffffff;
+    margin-bottom: 0.75rem;
+}
+
+.why-col-desc {
+    font-family: var(--font-body);
+    font-weight: 300;
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.5);
+    line-height: 1.6;
+}
+
+.opacity-20 { opacity: 0.2; }
+
+/* Mobile Adjustments */
+@media (max-width: 991px) {
+    .mission-grid, .vision-grid-new, .why-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .mission-section, .vision-founder-section, .why-choose-section {
+        padding: 4rem 2rem;
+    }
+
+    .photo-strip {
+        height: 200px;
+    }
+
+    .hero-headline {
+        font-size: 2.5rem;
+    }
+
+    .vision-grid-new {
+        gap: 3rem;
+    }
 }

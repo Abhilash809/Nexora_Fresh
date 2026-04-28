@@ -15,8 +15,10 @@ const Header = () => {
     const location = useLocation();
     const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
     const isHome = location.pathname === '/';
+    const isAbout = location.pathname === '/about';
     const isProducts = location.pathname.startsWith('/products');
-    const headerClass = `header ${scrolled ? 'scrolled' : ''} ${!isHome ? (isProducts ? 'products' : 'solid') : ''}`;
+    const isTransparent = isHome || isAbout;
+    const headerClass = `header ${scrolled ? 'scrolled' : ''} ${!isTransparent ? (isProducts ? 'products' : 'solid') : ''}`;
 
     useEffect(() => {
         const handleScroll = () => {
