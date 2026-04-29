@@ -18,56 +18,78 @@
 }
 /* Products & Solid Page Header (Light Background) */
 .header.products,
-.header.solid {
+.header.solid,
+.header.legal {
     background-color: var(--color-cream);
     box-shadow: none;
     padding: 1.25rem 0;
 }
 
+.header.legal {
+    border-bottom: none !important;
+    box-shadow: none !important;
+}
+
 /* Maintain cream background when scrolled on light pages, but add a subtle shadow for legibility if needed */
 /* Or as requested: "no border, no shadow, no visible separation" */
 .header.scrolled.products,
-.header.scrolled.solid {
+.header.scrolled.solid,
+.header.scrolled.legal {
     background-color: var(--color-cream);
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05); /* very subtle shadow instead of the heavy one */
     padding: 0.75rem 0;
 }
 
+.header.scrolled.legal {
+    box-shadow: none !important; /* "no border, no shadow" */
+}
+
 .header.products .logo,
-.header.solid .logo {
+.header.solid .logo,
+.header.legal .logo {
     color: var(--color-deep-green);
 }
 
 .header.products .nav-link,
-.header.solid .nav-link {
+.header.solid .nav-link,
+.header.legal .nav-link {
     color: rgba(15, 46, 26, 0.7);
 }
 
 .header.products .nav-link:hover,
 .header.products .nav-link.active,
 .header.solid .nav-link:hover,
-.header.solid .nav-link.active {
+.header.solid .nav-link.active,
+.header.legal .nav-link:hover {
     color: var(--color-deep-green);
 }
 
+.header.legal .nav-link.active::after {
+    display: none; /* "no active underline on any nav link" */
+}
+
 .header.products .icon-btn,
-.header.solid .icon-btn {
+.header.solid .icon-btn,
+.header.legal .icon-btn {
     color: var(--color-deep-green);
 }
 
 .header.products .currency-toggle,
-.header.solid .currency-toggle {
+.header.solid .currency-toggle,
+.header.legal .currency-toggle {
     color: var(--color-deep-green);
     border-color: rgba(15, 46, 26, 0.2);
 }
 
 .header.products .currency-toggle:hover,
-.header.solid .currency-toggle:hover {
+.header.solid .currency-toggle:hover,
+.header.legal .currency-toggle:hover {
     border-color: var(--color-deep-green);
 }
 
 .header.products .mobile-menu-btn,
-.header.solid .mobile-menu-btn {
+.header.solid .mobile-menu-btn,
+.header.legal .mobile-menu-btn {
     color: var(--color-deep-green);
 }
 

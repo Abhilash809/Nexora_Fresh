@@ -140,7 +140,8 @@
     font-weight: 300;
     color: var(--color-text-muted);
     white-space: nowrap;
-    margin-top: 5px; /* Align visually with text */
+    margin-top: 5px;
+    /* Align visually with text */
 }
 
 .product-description {
@@ -153,6 +154,7 @@
     flex-grow: 1;
     display: -webkit-box;
     -webkit-line-clamp: 2;
+    line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
 }

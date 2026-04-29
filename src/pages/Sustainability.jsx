@@ -1,11 +1,66 @@
-import React, { useEffect } from 'react';
-import { Droplet, Sun, Leaf } from 'lucide-react';
+import React, { useEffect, useState } from 'react';
+import { Droplet, Sun, Leaf, Recycle, Sprout, ShieldCheck, Wind } from 'lucide-react';
 import './Sustainability.css';
 
 const Sustainability = () => {
     useEffect(() => {
         window.scrollTo(0, 0);
     }, []);
+
+    const [activePillar, setActivePillar] = useState(null);
+    const [selectedPillar, setSelectedPillar] = useState(null);
+
+    const pillars = [
+        {
+            id: 1,
+            title: "Water Conservation",
+            description: "Drip irrigation systems reduce water usage by up to 80% compared to traditional field farming.",
+            icon: <Droplet size={28} />,
+            theme: "water"
+        },
+        {
+            id: 2,
+            title: "Chemical Management",
+            description: "100% organic fertilizers and biological pest control ensure soil health and safety.",
+            icon: <Leaf size={28} />,
+            theme: "nature"
+        },
+        {
+            id: 3,
+            title: "Energy Efficiency",
+            description: "Natural light optimization and smart climate control minimize our energy footprint.",
+            icon: <Sun size={28} />,
+            theme: "energy"
+        },
+        {
+            id: 4,
+            title: "Waste Reduction",
+            description: "Zero-waste packaging and advanced composting initiatives close the loop.",
+            icon: <Recycle size={28} />,
+            theme: "waste"
+        },
+        {
+            id: 5,
+            title: "Soil Health",
+            description: "Regenerative practices ensure our land remains nutrient-rich for generations.",
+            icon: <Sprout size={28} />,
+            theme: "soil"
+        },
+        {
+            id: 6,
+            title: "Ethical Sourcing",
+            description: "Fair wages and safe working conditions for every member of our farming community.",
+            icon: <ShieldCheck size={28} />,
+            theme: "ethical"
+        },
+        {
+            id: 7,
+            title: "Carbon Footprint",
+            description: "Optimized local distribution paths to minimize transit emissions and stay fresh.",
+            icon: <Wind size={28} />,
+            theme: "carbon"
+        }
+    ];
 
     return (
         <div className="sustainability-page">
@@ -31,41 +86,49 @@ const Sustainability = () => {
                 </div>
             </section>
 
-            {/* Section 3: 3 Pillar Cards */}
-            <section className="sus-pillars-section">
+            {/* Section 3: Interactive Circular Wheel */}
+            <section className={`sus-pillars-section theme-${selectedPillar?.theme || 'default'}`}>
+                <div className="theme-overlay"></div>
                 <div className="sus-container">
-                    <div className="sus-pillars-grid">
-                        <div className="sus-pillar-card animate-fade-in">
-                            <div className="sus-pillar-icon">
-                                <Droplet size={40} />
-                            </div>
-                            <h3 className="sus-pillar-title">Water Conservation</h3>
-                            <p className="sus-pillar-body">
-                                Our drip irrigation systems reduce water usage by up to 80% compared to traditional field farming.
-                            </p>
-                            <div className="card-hover-border"></div>
+                    <div className="sus-wheel-wrapper">
+                        <div className="sus-wheel-orbit">
+                            {pillars.map((pillar, index) => {
+                                const angle = (index / pillars.length) * 360;
+                                return (
+                                    <div 
+                                        key={pillar.id} 
+                                        className="sus-orbit-item-container"
+                                        style={{ '--angle': `${angle}deg` }}
+                                        onMouseEnter={() => setActivePillar(pillar)}
+                                        onMouseLeave={() => setActivePillar(null)}
+                                        onClick={() => setSelectedPillar(selectedPillar?.id === pillar.id ? null : pillar)}
+                                    >
+                                        <div className={`sus-orbit-item ${activePillar?.id === pillar.id ? 'active' : ''} ${selectedPillar?.id === pillar.id ? 'selected' : ''}`}>
+                                            <div className="sus-orbit-icon-box">
+                                                {pillar.icon}
+                                            </div>
+                                        </div>
+                                    </div>
+                                );
+                            })}
                         </div>
-
-                        <div className="sus-pillar-card animate-fade-in" style={{ animationDelay: '0.1s' }}>
-                            <div className="sus-pillar-icon">
-                                <Leaf size={40} />
-                            </div>
-                            <h3 className="sus-pillar-title">Chemical Management</h3>
-                            <p className="sus-pillar-body">
-                                We prioritize biological pest control and organic fertilizers, ensuring our produce is safe for you and the soil.
-                            </p>
-                            <div className="card-hover-border"></div>
-                        </div>
-
-                        <div className="sus-pillar-card animate-fade-in" style={{ animationDelay: '0.2s' }}>
-                            <div className="sus-pillar-icon">
-                                <Sun size={40} />
-                            </div>
-                            <h3 className="sus-pillar-title">Energy Efficiency</h3>
-                            <p className="sus-pillar-body">
-                                Our greenhouses use natural light optimization and energy-efficient climate control to reduce power consumption.
-                            </p>
-                            <div className="card-hover-border"></div>
+                        
+                        <div className={`sus-wheel-center ${activePillar || selectedPillar ? 'has-active' : ''}`}>
+                            <div className="center-glow"></div>
+                            {!activePillar && !selectedPillar ? (
+                                <div className="center-default animate-fade-in">
+                                    <span className="center-eyebrow">Nexora</span>
+                                    <h3 className="center-title">Eco System</h3>
+                                    <div className="center-divider"></div>
+                                    <p className="center-text">Hover or Click a bubble</p>
+                                </div>
+                            ) : (
+                                <div className="center-active animate-fade-in">
+                                    <h3 className="active-pillar-title">{(activePillar || selectedPillar).title}</h3>
+                                    <div className="center-divider"></div>
+                                    <p className="active-pillar-desc">{(activePillar || selectedPillar).description}</p>
+                                </div>
+                            )}
                         </div>
                     </div>
                 </div>

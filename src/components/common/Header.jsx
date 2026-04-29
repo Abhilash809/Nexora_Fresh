@@ -18,9 +18,10 @@ const Header = () => {
     const isAbout = location.pathname === '/about';
     const isSustainability = location.pathname === '/sustainability';
     const isContact = location.pathname === '/contact';
+    const isTerms = location.pathname === '/terms';
     const isProducts = location.pathname.startsWith('/products');
     const isTransparent = isHome || isAbout || isSustainability || isContact;
-    const headerClass = `header ${scrolled ? 'scrolled' : ''} ${!isTransparent ? (isProducts ? 'products' : 'solid') : ''}`;
+    const headerClass = `header ${scrolled ? 'scrolled' : ''} ${isTerms ? 'legal' : (!isTransparent ? (isProducts ? 'products' : 'solid') : '')}`;
 
     useEffect(() => {
         const handleScroll = () => {
